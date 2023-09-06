@@ -1,6 +1,6 @@
 # Smart Switch w/Presence Detection - ESPHome Version
 
-![SwitchPhoto](/img/mjss01.jpeg|width=400px)
+![SwitchPhoto]<img src='/img/mjss01.jpeg' width='400'>
 
 ## Overview
 This is how to outfit an LD2410C presence detector into a ESP based smart switch
