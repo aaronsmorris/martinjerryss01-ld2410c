@@ -44,7 +44,7 @@ Place the LD2410C in the bracket and glue the bracket to the switch paddle.
 Solder wires from the VCC and GND on the LD2410C to the 5V VCC on the 3pin connector on the switch PCB
 Solder a wire from the OUT pin on the LD2410C to the ESP8266 bottom row, 5th pin in (GPIO14)
 
-![LD2410C](/img/ESPWiring.jpeg)
+![LD2410C](/img/ESPwiring.jpeg)
 
 Secure wires using hot glue.
 Put kapton or other insulating tape on back of LD2410C module.
