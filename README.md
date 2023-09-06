@@ -36,9 +36,23 @@ All parts print without support in the default orientation.
 
 ### Build & Assembly
 
+Open the switch up by prying the body open at the top with a thin bladed screwdriver or tool.
+Disconnect the connector that connects the front of the switch to the back of it.
+Remove the 4 screws that hold the PCB on the front of the switch.
+Remove the 4 pin header or cut it completely down on the LD2410C module.
+Place the LD2410C in the bracket and glue the bracket to the switch paddle.
+Solder wires from the VCC and GND on the LD2410C to the 5V VCC on the 3pin connector on the switch PCB
+Solder a wire from the OUT pin on the LD2410C to the ESP8266 bottom row, 5th pin in (GPIO14)
+
+![LD2410C](/img/ESPWiring.jpeg)
+
+Secure wires using hot glue.
+Put kapton or other insulating tape on back of LD2410C module.
+Reassemble switch.
+Flash your switch from Tasmota to ESPHome.
 
 ## ESPHome YAML File
 
-Here's an example of how I set up my ESPHome YAML for this sensor. It's a Dallas 18B20 temp sensor, and I use deep sleep to conserve power. Every 15m I report the temp and battery voltage. I use a deep sleep toggle entity on Home Assistant to tell the device when not to use deep sleep so that I can do OTA updates.
+Here's an example of how I set up my ESPHome YAML for this sensor. You will have to build a new ESPHome device and then gzip the firmware and upload it to the Tasmota page for the device to flash it to ESPHome.
 
 ![ESPHome YAML](/mjss01-ld410c.yaml)
