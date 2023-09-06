@@ -24,7 +24,7 @@ Code is compatible with ESP8266
 
 ### Schematic 
 Below is the schematic
-<img src='/img/schematic.png' width='200'>
+<img src='/img/schematic.png' width='400'>
 
 ### Printable Parts 
 
