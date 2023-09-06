@@ -1,0 +1,102 @@
+esphome:
+  name: mjss01-lights01
+substitutions:
+  friendly_name: mjss01-lights01
+esp8266:
+  board: esp01_1m
+  restore_from_flash: true
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret encryption_key
+
+ota:
+  password: !secret ota_password
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "MJSS01-Lights01 Fallback Hotspot"
+    password: !secret wifi_ap_password
+
+web_server:
+  port: 80
+  
+captive_portal:
+
+switch:
+  # relay output
+  - platform: gpio
+    id: relay
+    name: $friendly_name
+    pin: GPIO12
+
+    on_turn_on: #blue when on
+      - switch.turn_on: blue_led
+      - switch.turn_off: red_led
+
+    on_turn_off: #purple when off
+      - switch.turn_on: blue_led
+      - switch.turn_on: red_led
+
+  - platform: gpio
+    # https://esphome.io/components/switch/gpio.html
+    pin: GPIO04
+    id: red_led
+    name: Red LED
+    inverted: true
+
+  - platform: gpio
+    # https://esphome.io/components/switch/gpio.html
+    pin: GPIO05
+    id: blue_led
+    name: Blue LED
+    inverted: true
+
+binary_sensor:
+  - platform: gpio
+    # https://esphome.io/components/binary_sensor/gpio.html
+    pin:
+      number: GPIO13
+      mode: INPUT_PULLUP
+    name: Main Button
+    internal: True
+    on_press:
+      - switch.toggle: relay
+  - platform: gpio
+    pin: GPIO14
+    name: "Pantry Occupancy"
+    id: occupancy
+    device_class: occupancy
+
+button:
+  - platform: restart
+    id: restart_button
+    name: Restart
+    entity_category: diagnostic
+
+text_sensor:
+  - platform: version
+    name: ESPHome Version
+    id: esphome_version
+    hide_timestamp: True
+  - platform: wifi_info
+    ip_address:
+      id: ip_address
+      name: IP Address
+    mac_address:
+      name: Mac
+      id: mac_address
+
+sensor:
+  - platform: uptime
+    name: $friendly_name Uptime Sensor
+  - platform: wifi_signal
+    name: $friendly_name wifi signal
